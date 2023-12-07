@@ -50,7 +50,24 @@ Now run the debian install script:
     ./install.sh 2>&1 | tee install-$(date '+%Y%m%d-%H%M%S').log
 
 
+## Running the tests
 
+Run the test script as follows:
+
+    cd azhpc-images/tests
+    ./run-tests.sh --mofed-lts false 2>&1 | tee run-tests-$(date '+%Y%m%d-%H%M%S').log
+
+## Capture the image
+
+Log in as root on the VM and run the following:
+
+    waagent -deprovision+user -force
+
+Use the AzureCLI to run:
+
+    az vm deallocate --resource-group <resource-group> --name <vm-name>
+    az vm generalize --resource-group <resource-group> --name <vm-name>
+    az image create --resource-group <resource-group> --name <image-name> --source <vm-name>
 
 Software packages (MPI / HPC libraries) are configured as environment modules. Users can select preferred MPI or software packages as follows:
 
