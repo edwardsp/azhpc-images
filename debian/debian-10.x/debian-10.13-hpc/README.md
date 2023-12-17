@@ -39,9 +39,7 @@ This kernel version is for Debian 10 4.19.  In order to use a more recent kernel
 
 Check out the `azhpc-images` repo with the `debian-10.13`:
 
-    sudo install git gpg
-    # switch to root
-    sudo -i
+    apt install git gpg
     git clone -b debian-10.13 https://github.com/edwardsp/azhpc-images.git
 
 Now run the debian install script:
@@ -65,9 +63,11 @@ Log in as root on the VM and run the following:
 
 Use the AzureCLI to run:
 
-    az vm deallocate --resource-group <resource-group> --name <vm-name>
-    az vm generalize --resource-group <resource-group> --name <vm-name>
-    az image create --resource-group <resource-group> --name <image-name> --source <vm-name>
+```
+az vm deallocate --resource-group $resource_group --name $vm_name
+az vm generalize --resource-group $resource_group --name $vm_name
+az image create --resource-group $resource_group --name $image_name --source $vm_name --hyper-v-generation V2
+```
 
 Software packages (MPI / HPC libraries) are configured as environment modules. Users can select preferred MPI or software packages as follows:
 
