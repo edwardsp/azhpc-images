@@ -37,11 +37,16 @@ apt-get install -y libpython3.8-dev
 apt-get install -y libgirepository1.0-dev
 #python3.8 -m pip install --ignore-installed PyGObject
 apt-get install -y software-properties-common
+# various packages for 10.13
+apt-get install -y mdadm
+apt-get install -y lvm2
+apt-get install -y xfsprogs
+apt-get install -y nfs-kernel-server -t buster-backports
 
-# For networkd-dispatcher + unattended-upgrades services to work correctly. Specific to ubunut 18.04
+# For networkd-dispatcher + unattended-upgrades services to work correctly. Specific to ubuntu 18.04
 ln -sf  /usr/lib/python3/dist-packages/_dbus_glib_bindings.cpython-37m-x86_64-linux-gnu.so /usr/lib/python3/dist-packages/_dbus_glib_bindings.so
 ln -sf  /usr/lib/python3/dist-packages/_dbus_bindings.cpython-37m-x86_64-linux-gnu.so /usr/lib/python3/dist-packages/_dbus_bindings.so
 apt-get -y install libglib2.0-dev libdbus-1-3 libdbus-1-dev
 
 sudo python3 -m  pip install meson ninja
-sudo python3 -m pip install pgi dbus-python 
+sudo python3 -m pip install pgi dbus-python
