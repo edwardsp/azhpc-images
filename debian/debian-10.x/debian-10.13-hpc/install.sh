@@ -60,6 +60,12 @@ $DEBIAN_COMMON_DIR/disable_auto_upgrade.sh
 # SKU Customization
 $COMMON_DIR/setup_sku_customizations.sh
 
+# we need a recent cloud-init to support retrying after a timeout
+# GPU nodes with an older kernel can take >2 mins to boot
+wget http://debian-archive.trafficmanager.net/debian/pool/main/c/cloud-init/cloud-init_23.3.1-1_all.deb
+apt install -y python3-netifaces python3-serial
+apt install -y ./cloud-init_23.3.1-1_all.deb
+
 # clear history
 # Uncomment the line below if you are running this on a VM
 # $COMMON_DIR/clear_history.sh
